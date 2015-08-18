@@ -11,7 +11,7 @@
     "test": "npm run lint && NODE_ENV=test mocha",
     "tdd": "NODE_ENV=test mocha --watch",
     "coverage": "babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha",
-    "site": "node docs/server.js",
+    "docs": "node docs/server.js",
     "release": "release"
   },
   "repository": {
@@ -42,6 +42,7 @@
     "eslint": "^1.1.0",
     "eslint-config-standard": "^4.1.0",
     "eslint-config-standard-react": "^1.0.4",
+    "eslint-plugin-babel": "^2.1.1",
     "eslint-plugin-react": "^3.2.2",
     "eslint-plugin-standard": "^1.2.0",
     "expect": "^1.6.0",

@@ -19,7 +19,7 @@ module.exports = {
   ],
   resolve: {
     alias: {
-      'component-name': path.join(__dirname, 'src')
+      'color-selector': path.join(__dirname, 'src')
     },
     extensions: ['', '.js']
   },
