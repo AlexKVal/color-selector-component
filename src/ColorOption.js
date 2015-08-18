@@ -8,16 +8,12 @@ export default class ColorOption extends Component {
       ...props
     } = this.props
 
-    const aStyle = {
-      'background-color': color
-    }
-
     return (
       <li>
         <a href='#'
           title={title}
           className='color-btn'
-          style={aStyle} />
+          style={{backgroundColor: color}} />
       </li>
     )
   }

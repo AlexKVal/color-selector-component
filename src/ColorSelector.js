@@ -1,11 +1,32 @@
 import React, {PropTypes, Component} from 'react'
+import classNames from 'classnames'
 
-export default class ColorSelector extends Component {
+class ColorSelector extends Component {
+  constructor (props, context) {
+    super(props, context)
+
+    this.state = {expanded: props.defaultExpanded}
+    this._handleDropdownClick = this._handleDropdownClick.bind(this)
+  }
+
+  _handleDropdownClick (e) {
+    this.setState({expanded: !this.state.expanded})
+
+    e.preventDefault()
+  }
+
   render () {
+    const divClassName = classNames({
+      open: this.state.expanded
+    }, 'dropdown-colorselector dropdown')
+
     return (
-      <div className='dropdown dropdown-colorselector open'>
-        <a href='#' className='dropdown-toggle' aria-expanded='true'>
-          <span className='btn-colorselector'></span>
+      <div className={divClassName}>
+        <a href='#'
+          className='dropdown-toggle'
+          aria-expanded={this.state.expanded}>
+          <span className='btn-colorselector'
+          onClick={this._handleDropdownClick} />
         </a>
 
         <ul className='dropdown-menu dropdown-caret'>
@@ -15,3 +36,13 @@ export default class ColorSelector extends Component {
     )
   }
 }
+
+ColorSelector.propTypes = {
+  defaultExpanded: PropTypes.bool
+}
+
+ColorSelector.defaultProps = {
+  defaultExpanded: false
+}
+
+export default ColorSelector
