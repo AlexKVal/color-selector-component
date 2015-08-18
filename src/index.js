@@ -1,3 +1,2 @@
-export function add (x, y) {
-  return x + y
-}
+export ColorSelector from './ColorSelector'
+export ColorOption from './ColorOption'
