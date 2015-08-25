@@ -5,16 +5,28 @@ class ColorSelector extends Component {
   constructor (props, context) {
     super(props, context)
 
-    this.state = {expanded: props.defaultExpanded}
+    this.state = {
+      expanded: props.defaultExpanded,
+      colorSelected: props.defaultColor
+    }
 
     this._handleDropdownClick = this._handleDropdownClick.bind(this)
     this._renderOption = this._renderOption.bind(this)
   }
 
-  _handleDropdownClick (e) {
+  _toggleDropdown () {
     this.setState({expanded: !this.state.expanded})
+  }
+
+  _handleDropdownClick (e) {
+    this._toggleDropdown()
 
     e.preventDefault()
+  }
+
+  _handleOptionClick (color) {
+    this.setState({ colorSelected: color })
+    this._toggleDropdown()
   }
 
   _renderOption (child) {
@@ -22,9 +34,13 @@ class ColorSelector extends Component {
       child,
       {
         active: child.props.color === this.state.colorSelected,
-        onClick: (color) => this.setState({ colorSelected: color })
+        onClick: this._handleOptionClick.bind(this)
       }
     )
+  }
+
+  _selectedColor () {
+    return this.props.defaultColor
   }
 
   render () {
@@ -38,7 +54,8 @@ class ColorSelector extends Component {
           className='dropdown-toggle'
           aria-expanded={this.state.expanded}>
           <span className='btn-colorselector'
-          onClick={this._handleDropdownClick} />
+          onClick={this._handleDropdownClick}
+          style={{backgroundColor: this.state.colorSelected}} />
         </a>
 
         <ul className='dropdown-menu dropdown-caret'>
@@ -50,10 +67,12 @@ class ColorSelector extends Component {
 }
 
 ColorSelector.propTypes = {
+  defaultColor: PropTypes.string,
   defaultExpanded: PropTypes.bool
 }
 
 ColorSelector.defaultProps = {
+  defaultColor: '#DDD',
   defaultExpanded: false
 }
 

@@ -7,7 +7,7 @@ export default class App extends Component {
       <div className='container'>
         <h4>Color selector</h4>
 
-        <ColorSelector>
+        <ColorSelector defaultColor='#FF4500'>
           <ColorOption value='106' color='#A0522D' title='sienna' />
           <ColorOption value='47' color='#CD5C5C' title='indianred' />
           <ColorOption value='87' color='#FF4500' title='orangered' />
